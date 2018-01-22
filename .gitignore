@@ -1,0 +1,4 @@
+.vscode/
+node_modules/
+.awcache
+.DS_store

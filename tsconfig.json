@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "outDir": "./build/",
+        "module": "commonjs",
+        "target": "es6",
+        "jsx": "react",
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "removeComments": true,
+        "noUnusedLocals": true,
+        "sourceMap": true
+    },
+    "awesomeTypescriptLoaderOptions": {
+        "useBabel": true,
+        "useCache": true
+    },
+    "include": [
+        "./src/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

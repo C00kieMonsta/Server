@@ -4,6 +4,9 @@ import * as cors from 'cors';
 import * as express from 'express';
 import * as logger from 'morgan';
 
+import PostRouter from './router/post';
+import UserRouter from './router/user';
+
 class Server {
 
     // set app to be of type express.Application
@@ -40,8 +43,8 @@ class Server {
         const router: express.Router = express.Router();
 
         this.app.use('/', router);
-        // this.app.use('/api/v1/posts', PostRouter);
-        // this.app.use('/api/v1/users', UserRouter);
+        this.app.use('/api/v1/posts', PostRouter);
+        this.app.use('/api/v1/users', UserRouter);
     }
 }
 

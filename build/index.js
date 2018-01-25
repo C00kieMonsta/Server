@@ -1,39 +1,32 @@
-import * as debug from 'debug';
-import * as http from 'http';
-
-// Server config copied from https://github.com/iamclaytonray/tes/blob/master/src/index.ts
-// Copyright 2017 Clayton Ray
-// MIT License
-
-import Server from './server';
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const debug = require("debug");
+const http = require("http");
+const server_1 = require("./server");
 debug('ts-express:server');
-
 const port = normalizePort(process.env.PORT || 8080);
-Server.set('port', port);
-
+server_1.default.set('port', port);
 console.log(`Server listening on port ${port}`);
-
-const server = http.createServer(Server);
+const server = http.createServer(server_1.default);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
-function normalizePort(val : number | string) : number | string | boolean {
-    const port: number = (typeof val === 'string')
+function normalizePort(val) {
+    const port = (typeof val === 'string')
         ? parseInt(val, 10)
         : val;
     if (isNaN(port)) {
         return val;
-    } else if (port >= 0) {
+    }
+    else if (port >= 0) {
         return port;
-    } else {
+    }
+    else {
         return false;
     }
 }
-
-function onError(error : NodeJS.ErrnoException) : void {
-    if(error.syscall !== 'listen') {
+function onError(error) {
+    if (error.syscall !== 'listen') {
         throw error;
     }
     const bind = (typeof port === 'string')
@@ -52,11 +45,11 @@ function onError(error : NodeJS.ErrnoException) : void {
             throw error;
     }
 }
-
-function onListening() : void {
+function onListening() {
     const addr = server.address();
     const bind = (typeof addr === 'string')
         ? `pipe ${addr}`
         : `port ${addr.port}`;
     debug(`Listening on ${bind}`);
 }
+//# sourceMappingURL=index.js.map

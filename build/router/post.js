@@ -1,47 +1,41 @@
-import { Request, Response, Router } from 'express';
-import * as uuid from 'uuid';
-import * as Post from '../store/posts';
-
-export class PostRouter {
-    public router: Router;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const uuid = require("uuid");
+const Post = require("../store/posts");
+class PostRouter {
     constructor() {
-        this.router = Router();
+        this.router = express_1.Router();
         this.routes();
     }
-
-    public all(req: Request, res: Response): void {
+    all(req, res) {
         Post.getAll().then((data) => {
             res.status(200).json({ data });
         }).catch((error) => {
             res.status(500).json({ error });
-        })
+        });
     }
-
-    public create(req: Request, res: Response): void {
+    create(req, res) {
         const { userId, postContent } = req.body;
-
         if (!userId || !postContent) {
             res.status(400).send();
             return;
         }
-
         const postId = uuid.v4();
         const createdAt = Date.now();
-
         Post.create(postId, userId, createdAt, postContent).then((data) => {
             res.status(200).json({ data });
         }).catch((error) => {
             res.status(500).json({ error });
-        })
+        });
     }
-
-    public routes() {
+    routes() {
         this.router.get('/', this.all);
-        this.router.post('/', this.create);
+        this.router.post('/new', this.create);
     }
 }
-
-const postRoutes: PostRouter = new PostRouter();
+exports.PostRouter = PostRouter;
+const postRoutes = new PostRouter();
 postRoutes.routes();
-
-export default postRoutes.router;
+exports.default = postRoutes.router;
+//# sourceMappingURL=post.js.map

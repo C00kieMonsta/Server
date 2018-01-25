@@ -41,9 +41,6 @@ class Server {
 
     // application routes
     public routes(): void {
-        const router: express.Router = express.Router();
-
-        //this.app.use('/', router);
         // Get all other requests
         this.app.get('*', (req, res) => {
             res.sendFile(path.resolve(__dirname + '/../app/index.html'));

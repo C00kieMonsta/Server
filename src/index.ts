@@ -1,6 +1,10 @@
 import * as debug from 'debug';
 import * as http from 'http';
 
+// Server config copied from https://github.com/iamclaytonray/tes/blob/master/src/index.ts
+// Copyright 2017 Clayton Ray
+// MIT License
+
 import Server from './server';
 
 debug('ts-express:server');

@@ -3,6 +3,7 @@ import * as cookieParser from 'cookie-parser';
 import * as cors from 'cors';
 import * as express from 'express';
 import * as logger from 'morgan';
+import * as path from 'path';
 
 import PostRouter from './router/post';
 import UserRouter from './router/user';
@@ -42,7 +43,11 @@ class Server {
     public routes(): void {
         const router: express.Router = express.Router();
 
-        this.app.use('/', router);
+        //this.app.use('/', router);
+        // Get all other requests
+        this.app.get('*', (req, res) => {
+            res.sendFile(path.resolve(__dirname + '/../app/index.html'));
+        });
         this.app.use('/api/v1/posts', PostRouter);
         this.app.use('/api/v1/users', UserRouter);
     }
